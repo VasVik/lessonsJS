@@ -1,20 +1,48 @@
-let person = {
-    name: 'max',
-    age: '39',
-    car: {
-        model: 'ford'
-    },
-    job: 'admin',
-    friends: ['Elena', 'Igor']
-};
+document.querySelector('button').addEventListener('click', function (event) {
 
-// преобразование обьекта в строку
-let str = JSON.stringify(person);
+    // работа со строкой
+    let value = document.querySelector('input').value;
+    localStorage.setItem('headerText', value);
 
-console.log(str);
+//    работа с объектом
 
-// преобразование обратно в объект JSON
-console.log(JSON.parse(str));
+    let obj = {
+        text: value
+    };
 
-console.log(person.car.model);
-console.log(person.friends);
+    localStorage.setItem('obj', JSON.stringify(obj))
+
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    // работа со строкой
+    // let text = localStorage.getItem('headerText');
+    //
+    // if (text && text.trim()) {
+    //     document.querySelector('h1').textContent = text;
+    // }
+
+    // работа с объектом my version
+
+    // let obj = JSON.parse(localStorage.getItem('obj'));
+    //
+    // if (obj && obj.text.trim()){
+    //     document.querySelector('h1').textContent = obj.text;
+    // }
+
+    // работа с объектом WMF version
+
+    let obj = {};
+
+    try {
+        obj = JSON.parse(localStorage.getItem('obj'));
+    } catch (e) {
+        
+    }
+
+    if (obj && obj.text && obj.text.trim()){
+        document.querySelector('h1').textContent = obj.text;
+    }
+
+});

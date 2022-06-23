@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: darkgray;
+}
+
+form {
+    margin: 10px;
+    padding: 10px;
+}
+
+.inp {
+    display: block;
+    margin-top: 5px;
+    /*padding: 10px;*/
+}
+
+.label {
+    display: inline;
+}
+
+input {
+    padding: 10px;
+}
+
+#show, #pass {
+    display: inline;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+#send {
+    display: block;
+    margin: 5px;
+    padding: 10px;
+}

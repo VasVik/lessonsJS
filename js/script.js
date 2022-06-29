@@ -24,15 +24,28 @@ function renderBox() {
 
     $game.innerHTML = '';
 
+    let gameSize = $game.getBoundingClientRect();
+    let maxHW = gameSize.width;
+
+    let boxSize = getRandom(5, maxHW); // myVersion
+    // let boxSize = getRandom(30, 100); // wfmVersion
+
+    let maxTop = maxHW - boxSize;
+    let maxLeft = maxHW - boxSize;
+
     let box = document.createElement('div');
 
-    box.style.height = box.style.width = '50px';
+    box.style.height = box.style.width = boxSize + 'px';
     box.style.position = 'absolute';
     box.style.backgroundColor = '#000';
-    box.style.top = '50px';
-    box.style.left = '70px';
+    box.style.top = getRandom(0, maxTop) + 'px';
+    box.style.left = getRandom(0, maxLeft) + 'px';
     box.style.cursor = 'pointer';
     box.setAttribute('data-box', 'true');
 
     $game.insertAdjacentElement('afterbegin', box);
+}
+
+function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
 }

@@ -1,8 +1,11 @@
 let $start = document.querySelector('#start');
 let $game = document.querySelector('#game');
-let $timeGame = document.querySelector('#time');
+let $tGame = document.querySelector('#time-header');
+let $time = document.querySelector('#time');
+let $resGame = document.querySelector('#result-header');
+let $result = document.querySelector('#result');
 
-let tGameNum = parseFloat($timeGame.textContent);
+let tGameNum = parseFloat($time.textContent);
 let score = 0;
 let isGameStarted = true;
 
@@ -10,8 +13,13 @@ $start.addEventListener('click', startGame);
 $game.addEventListener('click', handleBoxClick);
 
 
-
 function startGame() {
+
+    score = 0;
+    isGameStarted = true;
+    $tGame.classList.remove('hide');
+    $resGame.classList.add('hide');
+
     $game.style.backgroundColor = '#fff';
     $start.classList.add('hide');
 
@@ -21,7 +29,7 @@ function startGame() {
             clearInterval(intervalId);
             endGame();
         } else {
-            $timeGame.textContent = tGameNum.toFixed(1);
+            $time.textContent = tGameNum.toFixed(1);
             tGameNum -= 0.1;
         }
 
@@ -35,6 +43,16 @@ function endGame() {
 
     // wfm version
     isGameStarted = false;
+
+    $game.innerHTML = '';
+    $game.style.backgroundColor = '#ccc';
+    $start.classList.remove('hide');
+
+    $tGame.classList.add('hide');
+    $resGame.classList.remove('hide');
+    $result.textContent = score;
+    $time.textContent = '5.0';
+    tGameNum = 5.0;
 }
 
 function handleBoxClick(event) {

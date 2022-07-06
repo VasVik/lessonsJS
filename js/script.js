@@ -4,6 +4,7 @@ let $tGame = document.querySelector('#time-header');
 let $time = document.querySelector('#time');
 let $resGame = document.querySelector('#result-header');
 let $result = document.querySelector('#result');
+let $inputTime = document.querySelector('#game-time');
 
 let tGameNum = parseFloat($time.textContent);
 let score = 0;
@@ -11,17 +12,19 @@ let isGameStarted = true;
 
 $start.addEventListener('click', startGame);
 $game.addEventListener('click', handleBoxClick);
+$inputTime.addEventListener('input', setGameTime);
 
 
 function startGame() {
 
+    setGameTime();
     score = 0;
     isGameStarted = true;
-    $tGame.classList.remove('hide');
-    $resGame.classList.add('hide');
+
+    $inputTime.setAttribute('disabled', 'true');
 
     $game.style.backgroundColor = '#fff';
-    $start.classList.add('hide');
+    hide($start);
 
     let intervalId = setInterval(function () {
 
@@ -38,21 +41,37 @@ function startGame() {
     renderBox();
 }
 
-function endGame() {
-    // $game.removeEventListener('click', handleBoxClick); //myVersion
+function setGameTime() {
+    tGameNum = +$inputTime.value;
+    $time.textContent = tGameNum.toFixed(1);
+    show($tGame);
+    hide($resGame);
+}
 
-    // wfm version
+function setGameScore() {
+    $result.textContent = score;
+}
+
+function endGame() {
+
     isGameStarted = false;
 
     $game.innerHTML = '';
     $game.style.backgroundColor = '#ccc';
-    $start.classList.remove('hide');
+    show($start);
+    hide($tGame);
+    show($resGame);
 
-    $tGame.classList.add('hide');
-    $resGame.classList.remove('hide');
-    $result.textContent = score;
-    $time.textContent = '5.0';
-    tGameNum = 5.0;
+    $inputTime.removeAttribute('disabled');
+
+    setGameScore();
+}
+
+function show($el) {
+    $el.classList.remove('hide');
+}
+function hide($el) {
+    $el.classList.add('hide');
 }
 
 function handleBoxClick(event) {

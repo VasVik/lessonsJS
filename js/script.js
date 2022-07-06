@@ -103,7 +103,9 @@ function renderBox() {
 
     box.style.height = box.style.width = boxSize + 'px';
     box.style.position = 'absolute';
-    box.style.backgroundColor = '#000';
+
+    box.style.backgroundColor = getRandomColor();
+
     box.style.top = getRandom(0, maxTop) + 'px';
     box.style.left = getRandom(0, maxLeft) + 'px';
     box.style.cursor = 'pointer';
@@ -115,3 +117,22 @@ function renderBox() {
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
+
+function getRandomColor() {
+    // version 1
+    // return '#' + (Math.random().toString(16) + '000000').substring(2,8).toUpperCase();
+    return '#' + Math.random().toString(16).substring(2,8).toUpperCase();
+
+    // version 2
+    // let arr ='0123456789ABCDEF';
+    // let randColor = '#';
+    // for (let i = 0; i<3; i++){
+    //     // randColor += arr[Math.floor(Math.random()*16)]; //version 2
+    //
+    //     // version 3
+    //     randColor += arr[getRandom(0,15)];
+    // }
+    // return randColor;
+}
+
+

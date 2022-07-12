@@ -1,29 +1,14 @@
-let createCounter = function (counterName) {
-    let counter = 0;
-
-    // return function () {
-    //     console.log(counterName, ++counter)
-    // }
-
-    return {
-        increment: function () {
-            counter++;
-        },
-        decriment: function () {
-            counter--;
-        },
-        getCounter: function () {
-            return counter;
-        }
+let person = {
+    name: 'max',
+    age: 39,
+    job: 'admin',
+    displayInfo: function (ms) {
+        setTimeout(function () {
+            console.log('Name:', this.name);
+            console.log('Age:', this.age);
+            console.log('Job:', this.job);
+        }.bind(this), ms)
     }
 };
 
-let counterA = createCounter('counterA');
-let counterB = createCounter('counterB');
-
-counterA.increment();
-counterA.increment();
-counterA.increment();
-
-counterB.decriment();
-counterB.decriment();
+person.displayInfo(500);

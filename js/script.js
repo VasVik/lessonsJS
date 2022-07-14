@@ -1,28 +1,23 @@
-function printObject(objName) {
-    console.log('Printing object:', objName);
-    for (let key in this) {
-        console.log('[' + key + ']', this[key]);
-    }
-}
+let a = [1, 2, 3];
+let b = [5, 'Hello', 6];
 
-let person = {
-    firstName: 'max',
-    age: 27,
-    job: 'admin',
-    friends: ['elena', 'igor']
+Array.prototype.double = function () {
+    let newArray = this.map(function (item) {
+        if (typeof item === 'number') {
+            return Math.pow(item, 2);
+        }
+        if (typeof item === 'string') {
+            return item += item;
+        }
+    });
+    return newArray;
 };
 
-let car = {
-    name: 'ford',
-    model: 'focus',
-    year: 2017
-};
+let newA = a.double();
+let newB = b.double();
 
-let printPerson = printObject.bind(person);
-printPerson('Person');
-
-// сразу вызывает функцию
-printObject.call(car, 'Car');
-
-// похоже на call только параметры передаются массивом
-printObject.apply(person, ['Print Person with apply']);
+console.log('a', a);
+console.log('A', newA);
+console.log('A', newA.double());
+console.log('b', b);
+console.log('B', newB);

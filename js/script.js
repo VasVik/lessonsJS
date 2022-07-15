@@ -1,26 +1,62 @@
-// for (var i = 0; i < 5; i++ ) {
-//     console.log(i);
-//     setTimeout(function () {
-//         console.log(i);
-//     }, 2000);
-// };
+// function calculateAge(year) {
+//     const curent = new Date().getFullYear();
+//     return curent - year;
+// }
 //
-// for (let i = 0; i < 5; i++ ) {
-//     console.log(i);
-//     setTimeout(function () {
-//         console.log(i);
-//     }, 2000);
+// const getAge = year => {
+//     const curent = new Date().getFullYear();
+//     return curent - year;
 // };
 
-const HEX = '#FFAABB';
+// const getAge = year => {
+//     return new Date().getFullYear() - year;
+// };
 
-const array = [1, 2];
-const obj = {a: 1};
+// const getAge = year => new Date().getFullYear() - year;
+//
+// const logAge = year => console.log(new Date().getFullYear() - year);
+//
+// logAge(1988);
+//
+// console.log(getAge(1987));
 
-array.unshift(4);
-obj.b = 2;
+// старая реализация
+// const person = {
+//     firstName: 'max',
+//     age: 27,
+//     logNameWithTimeout: function () {
+//         window.setTimeout(function () {
+//             console.log(this.firstName);
+//         }.bind(this),1000);
+//     }
+// };
 
-console.log(array);
-console.log(obj);
+/* новый вариант реализации
+* function создает новый контекст с this,
+* стрелочная функция не создает новый и по этому
+* this используется от контента созданного function(т.е. от person)
+* */
+// const person = {
+//     firstName: 'max',
+//     age: 27,
+//     logNameWithTimeout: function () {
+//         window.setTimeout( () => {
+//             console.log(this.firstName);
+//         },1000)
+//     }
+// };
 
-document.querySelector('h1').style.color = HEX;
+// 2-й новый вариант реализации
+// равносилен предидущему варианту
+const person = {
+    firstName: 'max',
+    age: 27,
+    logNameWithTimeout() {
+        window.setTimeout(() => {
+            console.log(this.firstName);
+        }, 1000)
+    }
+};
+
+
+person.logNameWithTimeout();

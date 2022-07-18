@@ -1,20 +1,30 @@
-// исходый код
-// const createPost = (title, text, date) => {
-//     return {
-//         title: title,
-//         text: text,
-//         date: date
-//     }
-// };
+const createCar = (name, model) => ({name, model});
 
-//упрощенный код + добавлены параметры по умолчанию
-const createPost = (title, text = 'Default text', date = new Date().toLocaleDateString()) => {
-    return {title, text, date}
+const ford = createCar('ford', 'focus');
+
+console.log(ford);
+
+const yearField = 'year';
+
+const bmw = {
+    name: 'bmw',
+    ['model']: 'x7',
+    [yearField]: 2020,
+
+    logField() {
+        // console.log(this.name, this.model, this.year);
+
+        const {name, model, year} = this; // деструктуризация
+        console.log(name, model, year);
+    }
+
 };
 
+console.log(bmw);
+bmw.logField();
 
-const post = createPost('Заголовок', 'Очень важный текст', '15.07.2022');
-console.log(post);
+// const name = bmw.name;
+const {name} = bmw;
+const {model, year} = bmw;
 
-const post2 = createPost('Заголовок 2');
-console.log(post2);
+console.log(name, model, year);

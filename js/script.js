@@ -1,30 +1,75 @@
-const createCar = (name, model) => ({name, model});
+const form = document.querySelector('form');
 
-const ford = createCar('ford', 'focus');
+form.addEventListener('submit', event => {
+    event.preventDefault();
 
-console.log(ford);
+    const title = form.title.value;
+    const text = form.text.value;
+    const description = form.description.value;
 
-const yearField = 'year';
+    // saveForm({title, text, description});
 
-const bmw = {
-    name: 'bmw',
-    ['model']: 'x7',
-    [yearField]: 2020,
+    // Rest
+    saveForm(title, text, description);
+});
 
-    logField() {
-        // console.log(this.name, this.model, this.year);
+// исходный код
+// function saveForm(data) {
+//
+//     const formData = {
+//         date: new Date().toLocaleDateString(),
+//         title: data.title,
+//         text: data.text
+//     };
+//     console.log('Form-data:', formData);
+// }
 
-        const {name, model, year} = this; // деструктуризация
-        console.log(name, model, year);
-    }
+// оптимизация
+// function saveForm(data) {
+//
+//     const {title, text, description} = data;
+//
+//     const formData = {
+//         date: new Date().toLocaleDateString(),
+//         title, text, description
+//     };
+//
+//     console.log('Form-data:', formData);
+// }
 
-};
+// function saveForm({title, text, description}) {
+//
+//     const formData = {
+//         date: new Date().toLocaleDateString(),
+//         title, text, description
+//     };
+//
+//     console.log('Form-data:', formData);
+// }
 
-console.log(bmw);
-bmw.logField();
+// Spread
 
-// const name = bmw.name;
-const {name} = bmw;
-const {model, year} = bmw;
+// function saveForm(data) {
+//
+//     const formData = {
+//         date: new Date().toLocaleDateString(),
+//         ...data
+//     };
+//
+//     console.log('Form-data:', formData);
+// }
 
-console.log(name, model, year);
+// Rest
+
+function saveForm(...args) {
+
+    // console.log('Args:', args);
+
+    const [title, text, description] = args;
+    const formData = {
+        date: new Date().toLocaleDateString(),
+        title, text, description
+    };
+
+    console.log('Form-data:', formData);
+}

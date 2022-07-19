@@ -1,75 +1,25 @@
-const form = document.querySelector('form');
+const createLink = ({path, name}) => `<a href="${path}" target="_blank">${name}</a>`;
 
-form.addEventListener('submit', event => {
-    event.preventDefault();
+const ul = document.querySelector('ul');
 
-    const title = form.title.value;
-    const text = form.text.value;
-    const description = form.description.value;
+const google = `<li>${createLink({path: 'https:\\google.ru', name: 'google'})} </li>`;
+const yandex = `<li>${createLink({path: 'https:\\ya.ru', name: 'Yandex'})}</li>`;
 
-    // saveForm({title, text, description});
+ul.insertAdjacentHTML("afterbegin", google);
+ul.insertAdjacentHTML("afterbegin", yandex);
 
-    // Rest
-    saveForm(title, text, description);
-});
+const strToLog = `
+Hellow
+World
+    I am
+        New tab
+`;
 
-// исходный код
-// function saveForm(data) {
-//
-//     const formData = {
-//         date: new Date().toLocaleDateString(),
-//         title: data.title,
-//         text: data.text
-//     };
-//     console.log('Form-data:', formData);
-// }
+console.log(strToLog);
 
-// оптимизация
-// function saveForm(data) {
-//
-//     const {title, text, description} = data;
-//
-//     const formData = {
-//         date: new Date().toLocaleDateString(),
-//         title, text, description
-//     };
-//
-//     console.log('Form-data:', formData);
-// }
+//      myCode
+let li = document.createElement("li");
+li.innerHTML = createLink({path: 'https://rambler.ru', name: 'Rambler'});
+ul.insertAdjacentElement("beforeend", li);
+// ul.appendChild(li);
 
-// function saveForm({title, text, description}) {
-//
-//     const formData = {
-//         date: new Date().toLocaleDateString(),
-//         title, text, description
-//     };
-//
-//     console.log('Form-data:', formData);
-// }
-
-// Spread
-
-// function saveForm(data) {
-//
-//     const formData = {
-//         date: new Date().toLocaleDateString(),
-//         ...data
-//     };
-//
-//     console.log('Form-data:', formData);
-// }
-
-// Rest
-
-function saveForm(...args) {
-
-    // console.log('Args:', args);
-
-    const [title, text, description] = args;
-    const formData = {
-        date: new Date().toLocaleDateString(),
-        title, text, description
-    };
-
-    console.log('Form-data:', formData);
-}

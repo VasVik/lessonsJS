@@ -1,25 +1,68 @@
-const createLink = ({path, name}) => `<a href="${path}" target="_blank">${name}</a>`;
+// RootElement <= Box <= instances
 
-const ul = document.querySelector('ul');
+class RootElement {
+    constructor(tagName = 'div') {
 
-const google = `<li>${createLink({path: 'https:\\google.ru', name: 'google'})} </li>`;
-const yandex = `<li>${createLink({path: 'https:\\ya.ru', name: 'Yandex'})}</li>`;
+        this.$el = document.createElement(tagName);
+        this.$el.style.marginBottom = '10px';
 
-ul.insertAdjacentHTML("afterbegin", google);
-ul.insertAdjacentHTML("afterbegin", yandex);
+    }
 
-const strToLog = `
-Hellow
-World
-    I am
-        New tab
-`;
+    hide() {
+        this.$el.style.opacity = '0';
+    }
 
-console.log(strToLog);
+    show() {
+        this.$el.style.opacity = '1';
+    }
 
-//      myCode
-let li = document.createElement("li");
-li.innerHTML = createLink({path: 'https://rambler.ru', name: 'Rambler'});
-ul.insertAdjacentElement("beforeend", li);
-// ul.appendChild(li);
+    addEnd() {
+        document.querySelector('.wrapper').insertAdjacentElement('beforeend', this.$el);
+    }
+}
 
+class Box extends RootElement {
+    constructor(color = 'black', size = 70, tagName) {
+
+        super(tagName);
+        this.size = size;
+        this.color = color;
+    }
+
+    create() {
+        this.$el.style.background = this.color;
+        this.$el.style.width = this.$el.style.height = `${this.size}px`;
+
+        this.addEnd();
+
+        return this
+    }
+}
+
+class Circle extends RootElement {
+    constructor(color = 'brown', size = 50) {
+        super();
+        this.size = size;
+        this.color = color;
+    }
+
+    create() {
+        this.$el.style.background = this.color;
+        this.$el.style.height = this.$el.style.width = `${this.size}px`;
+        this.$el.style.borderRadius = '50%';
+        this.addEnd();
+
+        return this;
+    }
+}
+
+const square = new Box('red', 100).create();
+const circle = new Circle('blue', 100).create();
+const square2 = new Box('yellow').create();
+
+circle.$el.addEventListener('mouseenter', () => {
+    circle.hide();
+});
+circle.$el.addEventListener('mouseleave', () => {
+    circle.show();
+});

@@ -1,0 +1,24 @@
+{
+  "name": "js-native-blog",
+  "version": "1.0.0",
+  "description": "js native blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://VasVik@github.com/VasVik/lessonsJS.git"
+  },
+  "keywords": [
+    "js",
+    "blog",
+    "javascript"
+  ],
+  "author": "VasiliyV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VasVik/lessonsJS/issues"
+  },
+  "homepage": "https://github.com/VasVik/lessonsJS#readme"
+}

@@ -1,18 +1,11 @@
-// const now = new Date().toLocaleString();
-// console.log(now);
+const express = require('express');
 
-// console.log(Math.random())
+const app = express();
 
-const fs = require('fs');
-const data = `
-    Hello from NodeJS
-    I'm random text!
-`;
+app.get('/', (req, res) => {
+    res.end('Hello from nodejs');
+});
 
-fs.writeFileSync('nodejs.txt', data)
-
-const result = fs.readFileSync('nodejs.txt', {encoding: 'utf-8'});
-console.log(result);
-
-console.log(__dirname);
-console.log(__filename);
+app.listen(3000, () => {
+    console.log('Server started on port 3000...');
+});

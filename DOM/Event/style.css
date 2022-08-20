@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    display: flex;
+}
+
+.box{
+    text-align: center;
+    margin: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: greenyellow;
+    width: 150px;
+    height: 150px;
+    border: 1px solid darkgrey;
+}
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: cornflowerblue;
+}
+
+button{
+    height: 25px;
+    margin-left: 10px ;
+}

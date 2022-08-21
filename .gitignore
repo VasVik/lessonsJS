@@ -2,3 +2,4 @@ nbproject
 .idea
 /node_js/nodejs.txt
 /node_js/node_modules/
+/node_js/package-lock.json

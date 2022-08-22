@@ -1,5 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const weatherRequest = require('./requests/weather.request');
+
+// api Key 
+// 6639664b67c97ed7795e0b8f439609f0
 
 const app = express();
 
@@ -17,7 +21,7 @@ app.post('/', (req, res) => {
 
     const { city } = req.body;
 
-    console.log(city);
+    weatherRequest(city);
     res.render('index');
 });
 
